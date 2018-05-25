@@ -41,16 +41,17 @@ class FactionsProNew implements FactionsInterface
      * @param Player $player
      * @return string
      */
-    public function getPlayerRank(Player $player)
-    {
+    public function getPlayerRank(Player $player){
+        $officerbadge = $this->getAPI()->prefs->get("OfficerBadge");
+        $leaderbadge = $this->getAPI()->prefs->get("LeaderBadge");
         if($this->getAPI()->isInFaction($player->getName()))
         {
             if($this->getAPI()->isOfficer($player->getName())) {
-                return '*';
+                return '$officerbadge';
             }
             elseif($this->getAPI()->isLeader($player->getName()))
             {
-                return '**';
+                return '$leaderbadge';
             }
             else
             {
